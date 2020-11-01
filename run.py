@@ -8,4 +8,4 @@ from src import create_app
 # create an app instance
 app = create_app()
 
-app.run(debug=True, host='192.168.0.200')
+app.run(debug=True, host='192.168.0.227')

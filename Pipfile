@@ -11,6 +11,12 @@ flask-bootstrap = "*"
 flask-nav = "*"
 flask-debug = "*"
 flask-wtf = "*"
+fabo9axis-mpu9250-python3 = "*"
+gps = "*"
+pigpio = "*"
 
 [requires]
 python_version = "3.7"
+
+[scripts]
+start = "python run.py"
