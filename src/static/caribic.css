@@ -1,0 +1,34 @@
+.space-top {
+  padding-top: 10px;
+}
+
+#steering {
+  height: 100px;
+  width: 300px;
+  text-align: center;
+  background-color: #80d5ff;
+  font: 24px/300px Helvetica, Arial, sans-serif;
+  cursor: all-scroll;
+  user-select: none;
+  z-index: -100;
+}
+
+#throttle {
+  height: 300px;
+  width: 100px;
+  text-align: center;
+  background-color: #80d5ff;
+  font: 24px/300px Helvetica, Arial, sans-serif;
+  cursor: all-scroll;
+  user-select: none;
+  z-index: -100;
+}
+
+/*.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}*/

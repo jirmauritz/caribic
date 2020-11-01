@@ -1,0 +1,21 @@
+{# This simple template derives from ``base.html``. See ``base.html`` for
+   more information about template inheritance. #}
+{%- extends "base.html" %}
+
+{# Inside the ``content`` is where you should place most of your own stuff.
+   This will keep scripts at the page end and a navbar you add on later
+   intact. #}
+{% block content %}
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6">
+              <canvas id="steering" height="100" width="300"></canvas>
+            <p id="sVal" class="light">Steering: </p>
+          </div>
+          <div class="col-md-6">
+              <canvas id="throttle" height="300" width="100"></canvas>
+            <p id="tVal" class="light">Throttle: </p>
+          </div>
+      </div>
+  </div>
+{%- endblock %}
