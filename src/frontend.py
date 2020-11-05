@@ -4,7 +4,6 @@
 #
 # You can find out more about blueprints at
 # http://flask.pocoo.org/docs/blueprints/
-
 from flask import Blueprint, render_template
 from flask_nav.elements import Navbar, View
 

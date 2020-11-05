@@ -1,6 +1,9 @@
 // Namepspace
 var th = {}
 
+// init sockerIO
+var socket = io();
+
 th.xCenter = 50;
 th.yCenter = 150;
 th.stage = new createjs.Stage('throttle');
@@ -23,44 +26,32 @@ th.stage.update();
 
 var throttle = $('#throttle')[0];
 
-th.hm = new Hammer(throttle);
+th.hm = new Hammer.Manager(throttle, {
+	recognizers: [
+		[Hammer.Pan,{ direction: Hammer.DIRECTION_VERTICAL }],
+		[Hammer.Tap]
+	]
+});
 
-th.hm.on("tap", function(ev) {
-        th.psp.alpha = 1;
-
+var update_throttle = function(ev) {
         var bb = ev.target.getBoundingClientRect();
         y = Math.min(Math.max(ev.center.y - bb.top - 2*th.yCenter, -290), 0);
-        value = Math.round(-100 * y /290 )
-        $('#tVal').text('Throttle: ' + value);
-        th.psp.y = y;
-
-        th.stage.update();
-    });
+        if (th.psp.y != y) {
+            value = Math.round(-100 * y /290 );
+            socket.emit('throttle', value);
+            $('#tVal').text('Throttle: ' + value);
+            th.psp.y = y;
+            th.stage.update();
+        }
+    }
 
 th.hm.on("panstart", function(ev) {
-        console.log('start')
         th.psp.alpha = 1;
-
-        var bb = ev.target.getBoundingClientRect();
-        y = Math.min(Math.max(ev.center.y - bb.top - 2*th.yCenter, -290), 0);
-        value = Math.round(-100 * y /290 )
-        $('#tVal').text('Throttle: ' + value);
-        th.psp.y = y;
-
-
         th.stage.update();
     });
 
-// listen to events...
-th.hm.on("panmove", function(ev) {
-        var bb = ev.target.getBoundingClientRect();
-        y = Math.min(Math.max(ev.center.y - bb.top - 2*th.yCenter, -290), 0);
-        value = Math.round(-100 * y /290 )
-        $('#tVal').text('Throttle: ' + value);
-        th.psp.y = y;
-
-        th.stage.update();
-   });
+th.hm.on("pan", update_throttle);
+th.hm.on("tap", update_throttle);
 
 th.hm.on("panend", function(ev) {
         th.psp.alpha = 0.5;

@@ -14,6 +14,8 @@ flask-wtf = "*"
 fabo9axis-mpu9250-python3 = "*"
 gps = "*"
 pigpio = "*"
+flask-socketio = "*"
+eventlet = "*"
 
 [requires]
 python_version = "3.7"

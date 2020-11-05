@@ -1,6 +1,9 @@
 // Namespace
 var st = {}
 
+// init sockerIO
+var socket = io();
+
 st.xCenter = 150;
 st.yCenter = 50;
 st.stage = new createjs.Stage('steering');
@@ -23,53 +26,35 @@ st.stage.update();
 
 var steering = $('#steering')[0];
 
-// create a simple instance
-// by default, it only adds horizontal recognizers
 st.hm = new Hammer(steering);
 
-st.hm.on("press", function(ev) {
-        st.psp.alpha = 1;
-
-        var bb = ev.target.getBoundingClientRect();
-        x = Math.max(Math.min(ev.center.x - bb.left - st.xCenter, 145), -145);
-        st.psp.x = x;
+var update_steering = function(ev) {
+    var bb = ev.target.getBoundingClientRect();
+    x = Math.max(Math.min(ev.center.x - bb.left - st.xCenter, 145), -145);
+    if (st.psp.x != x) {
         value = Math.round(100 * x / 145)
+        socket.emit('steering', value);
         $('#sVal').text('Steering: ' + value);
-
+        st.psp.x = x;
         st.stage.update();
-    });
+    }
+}
 
-st.hm.on("pressup", function(ev) {
+var reset_steering = function(ev) {
+        socket.emit('steering', 0);
         st.psp.alpha = 0.5;
         createjs.Tween.get(st.psp).to({x: 0,y: 0}, 750, createjs.Ease.elasticOut);
         $('#sVal').text('Steering: ' + 0);
-    });
+    }
+
+st.hm.on("press", update_steering);
+st.hm.on("pressup", reset_steering);
 
 st.hm.on("panstart", function(ev) {
         st.psp.alpha = 1;
-
-        var bb = ev.target.getBoundingClientRect();
-        x = Math.max(Math.min(ev.center.x - bb.left - st.xCenter, 145), -145);
-        st.psp.x = x;
-        value = Math.round(100 * x / 145)
-        $('#sVal').text('Steering: ' + value);
-
         st.stage.update();
     });
 
-// listen to events...
-st.hm.on("panmove", function(ev) {
-        var bb = ev.target.getBoundingClientRect();
-        x = Math.max(Math.min(ev.center.x - bb.left - st.xCenter, 145), -145);
-        st.psp.x = x;
-        value = Math.round(100 * x / 145)
-        $('#sVal').text('Steering: ' + value);
+st.hm.on("panmove", update_steering);
 
-        st.stage.update();
-    });
-
-st.hm.on("panend", function(ev) {
-        st.psp.alpha = 0.5;
-        createjs.Tween.get(st.psp).to({x: 0,y: 0}, 750, createjs.Ease.elasticOut);
-        $('#sVal').text('Steering: ' + 0);
-    });
+st.hm.on("panend", reset_steering);
