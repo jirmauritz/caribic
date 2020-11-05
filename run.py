@@ -12,4 +12,4 @@ from src.sockets import register_sockets
 app = create_app()
 socketio = SocketIO(app, logging=True)
 register_sockets(socketio)
-socketio.run(app, debug=True)
+socketio.run(app)

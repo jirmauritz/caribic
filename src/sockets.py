@@ -1,4 +1,4 @@
-from src.controls.servo import steer
+from src.controls import servo
 
 def register_sockets(socketio):
     """
@@ -6,7 +6,7 @@ def register_sockets(socketio):
     """
     @socketio.on('steering')
     def handle(direction):
-        steer(direction)
+        servo.steer(direction)
 
     @socketio.on('throttle')
     def handle(data):
