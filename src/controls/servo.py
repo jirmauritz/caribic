@@ -1,10 +1,17 @@
 import RPi.GPIO as GPIO
-import time
+from time import sleep
 
-servoPIN = 27
+servoPIN = 17
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(servoPIN, GPIO.OUT)
+servo = GPIO.PWM(servoPIN, 50)
 
-p = GPIO.PWM(servoPIN, 50) # GPIO 17 for PWM with 50Hz
-p.start(7.5) # Initialization
-# from 5 to 9
+# Init to center
+servo.start(7)
+
+def steer(direction):
+    # map < -100, 100 > into < 5, 9 >
+    pwm = (direction / 50) + 7
+    servo.start(pwm)
+    sleep(0.5)
+    servo.start(0)
