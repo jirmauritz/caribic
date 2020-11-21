@@ -9,15 +9,19 @@ th.yCenter = 150;
 th.stage = new createjs.Stage('throttle');
 
 th.psp = new createjs.Shape();
-th.psp.graphics.beginFill('#333333').drawRect(th.xCenter-35, 2*th.yCenter - 10, 70, 10);
+th.psp.graphics.beginFill('#333333').drawRect(th.xCenter-35, th.yCenter - 5, 70, 10);
 
 th.psp.alpha = 0.5;
 
 th.vertical = new createjs.Shape();
 th.vertical.graphics.beginFill('#ff4d4d').drawRect(50, 0, 2, 300);
 
+th.horizontal = new createjs.Shape();
+th.horizontal.graphics.beginFill('#ff4d4d').drawRect(th.xCenter-50, th.yCenter, 300, 2);
+
 th.stage.addChild(th.psp);
 th.stage.addChild(th.vertical);
+th.stage.addChild(th.horizontal);
 createjs.Ticker.framerate = 60;
 createjs.Ticker.addEventListener('tick', th.stage);
 th.stage.update();
@@ -33,9 +37,9 @@ th.hm = new Hammer.Manager(throttle, {
 
 var update_throttle = function(ev) {
         var bb = ev.target.getBoundingClientRect();
-        y = Math.min(Math.max(ev.center.y - bb.top - 2*th.yCenter, -290), 0);
+        y = Math.min(Math.max(ev.center.y - bb.top - th.yCenter, -145), 145);
         if (th.psp.y != y) {
-            value = Math.round(-100 * y /290 );
+            value = Math.round( -100 * y / 145 );
             socket.emit('throttle', value);
             $('#tVal').text('Throttle: ' + value);
             th.psp.y = y;
