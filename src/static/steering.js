@@ -13,12 +13,10 @@ st.psp.graphics.beginFill('#333333').drawRect(st.xCenter-5, st.yCenter-35, 10, 7
 
 st.psp.alpha = 0.5;
 
-st.vertical = new createjs.Shape();
 st.horizontal = new createjs.Shape();
 st.horizontal.graphics.beginFill('#ff4d4d').drawRect(0, 50, 300, 2);
 
 st.stage.addChild(st.psp);
-st.stage.addChild(st.vertical);
 st.stage.addChild(st.horizontal);
 createjs.Ticker.framerate = 60;
 createjs.Ticker.addEventListener('tick', st.stage);

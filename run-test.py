@@ -6,10 +6,10 @@
 from flask_socketio import SocketIO
 
 from src import create_app
-from src.sockets import register_sockets
+from src.sockets import register_sockets_test
 
 # create an app instance
 app = create_app()
 socketio = SocketIO(app, logging=True)
-register_sockets(socketio)
+register_sockets_test(socketio)
 socketio.run(app, host='0.0.0.0')
