@@ -3,8 +3,8 @@ def register_sockets(socketio):
     """
     Register all listeners for the sockets from the frontend.
     """
-    from src.controls import servo
     from src.controls import esc
+    from src.controls import servo
 
     @socketio.on('steering')
     def handle(direction):
