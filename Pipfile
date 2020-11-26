@@ -18,5 +18,5 @@ eventlet = "*"
 python_version = "3.7"
 
 [scripts]
-start = "python run.py"
+start = "authbind --deep python run.py"
 test = "python run-test.py"
