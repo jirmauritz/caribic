@@ -7,16 +7,12 @@ verify_ssl = true
 ipython = "*"
 
 [packages]
-flask-bootstrap = "*"
-flask-nav = "*"
-flask-debug = "*"
-flask-wtf = "*"
+flask = "*"
 fabo9axis-mpu9250-python3 = "*"
 gps = "*"
 pigpio = "*"
 flask-socketio = "*"
 eventlet = "*"
-"rpi.gpio" = "*"
 
 [requires]
 python_version = "3.7"

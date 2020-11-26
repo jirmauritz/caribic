@@ -1,21 +1,58 @@
-{# This simple template derives from ``base.html``. See ``base.html`` for
-   more information about template inheritance. #}
-{%- extends "base.html" %}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-{# Inside the ``content`` is where you should place most of your own stuff.
-   This will keep scripts at the page end and a navbar you add on later
-   intact. #}
-{% block content %}
-  <div class="container">
-      <div class="row">
-          <div class="col-md-6">
-              <canvas id="steering" height="100" width="300"></canvas>
-            <p id="sVal" class="light">Steering: 0</p>
-          </div>
-          <div class="col-md-6">
-              <canvas id="throttle" height="300" width="100"></canvas>
-            <p id="tVal" class="light">Throttle: 0</p>
-          </div>
-      </div>
+    <title>Caribic</title>
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='caribic.css')}}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Caribic</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">GPS</a>
+      </li>
+    </ul>
   </div>
-{%- endblock %}
+</nav>
+
+<div class="container-sm">
+    <div class="d-flex flex-row">
+        <div class="p-2 w-100 align-self-end">
+            <canvas id="steering" height="100" width="300"></canvas>
+            <p id="sVal" class="light">Steering: 0</p>
+        </div>
+        <div class="p-2 flex-shrink-1">
+            <canvas id="throttle" height="300" width="100"></canvas>
+            <p id="tVal" class="light">Throttle: 0</p>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="{{url_for('static', filename='jquery.js')}}"></script>
+<script src="{{url_for('static', filename='hammer.js')}}"></script>
+<script src="{{url_for('static', filename='createjs.js')}}"></script>
+<script src="{{url_for('static', filename='socket.io.js')}}"></script>
+<script src="{{url_for('static', filename='popper.min.js')}}"></script>
+<script src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
+
+<script src="{{url_for('static', filename='throttle.js')}}"></script>
+<script src="{{url_for('static', filename='steering.js')}}"></script>
+
+</html>
