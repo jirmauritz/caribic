@@ -2,6 +2,17 @@
   padding-top: 10px;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+body {
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+   user-select: none;
+}
+
 #div_steering {
   position: fixed;
   top: 150;
@@ -26,7 +37,7 @@
 }
 
 #throttle {
-  height: 300px;
+  height: 200px;
   width: 100px;
   text-align: center;
   background-color: #80d5ff;
@@ -34,4 +45,14 @@
   cursor: all-scroll;
   user-select: none;
   z-index: -100;
+}
+
+#connected {
+    display: none;
+    width: 300px;
+}
+
+#disconnected {
+    display: none;
+    width: 300px;
 }
