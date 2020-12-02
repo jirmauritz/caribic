@@ -14,6 +14,11 @@ def register_sockets(socketio):
     def handle(rate):
         esc.speed(rate)
 
+    @socketio.on('disconnect')
+    def handle():
+        esc.speed(0)
+        servo.steer(0)
+
 def register_sockets_test(socketio):
     """
     Register all listeners for the sockets from the frontend.
@@ -25,3 +30,7 @@ def register_sockets_test(socketio):
     @socketio.on('throttle')
     def handle(rate):
         print(f'Throttle: {rate}')
+
+    @socketio.on('disconnect')
+    def handle():
+        print('Disconnected')

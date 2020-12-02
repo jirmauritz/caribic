@@ -1,4 +1,4 @@
-
+// show connection status
 var connDiv = $('#connected')[0];
 var disconnDiv = $('#disconnected')[0];
 
