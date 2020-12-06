@@ -19,4 +19,4 @@ python_version = "3.7"
 
 [scripts]
 start = "authbind --deep python run.py"
-test = "python run-test.py"
+test = "authbind --deep python run-test.py"
