@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/home.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container-sm">
+    <div class="d-flex flex-row">
+
+        <div class="p-2 w-100 align-self-end">
+            <div id="connected" class="alert alert-success" role="alert">
+                Connected
+            </div>
+            <div id="disconnected" class="alert alert-danger" role="alert">
+                Disconnected
+            </div>
+            <canvas id="steering" height="100" width="300"></canvas>
+            <p id="sVal" class="light">Steering: 0</p>
+        </div>
+        <div class="p-2 flex-shrink-1">
+            <div class="d-flex flex-row align-items-center">
+                <div class="p-2">
+                    <button id="stopBtn" type="button" class="btn btn-primary">Stop</button>
+                </div>
+                <div class="p-2">
+                    <canvas id="throttle" height="200" width="100"></canvas>
+                    <p id="tVal" class="light">Throttle: 0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{{url_for('static', filename='js/throttle.js')}}"></script>
+<script src="{{url_for('static', filename='js/steering.js')}}"></script>
+<script src="{{url_for('static', filename='js/home.js')}}"></script>
+{% endblock %}

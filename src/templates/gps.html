@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='vendors/css/leaflet.css')}}">
+
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/gps.css')}}">
+{% endblock %}
+
+
+
+{% block content %}
+<div id="mapid"></div>
+{% endblock %}
+
+
+
+{% block js %}
+<script src="{{url_for('static', filename='vendors/js/leaflet.js')}}"></script>
+
+<script src="{{url_for('static', filename='js/gps.js')}}"></script>
+{% endblock %}

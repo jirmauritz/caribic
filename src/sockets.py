@@ -1,3 +1,4 @@
+from flask_socketio import emit
 
 def register_sockets(socketio):
     """
@@ -34,3 +35,7 @@ def register_sockets_test(socketio):
     @socketio.on('disconnect')
     def handle():
         print('Disconnected')
+
+    @socketio.on('connect')
+    def handle():
+        print('Connected')
