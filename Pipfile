@@ -13,6 +13,7 @@ gps = "*"
 pigpio = "*"
 flask-socketio = "*"
 eventlet = "*"
+mpu9250-jmdev = "*"
 
 [requires]
 python_version = "3.7"
