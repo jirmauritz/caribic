@@ -1,4 +1,6 @@
+from src.controls.gps_control import gps_data
 from flask_socketio import emit
+
 
 def register_sockets(socketio):
     """
@@ -19,6 +21,12 @@ def register_sockets(socketio):
     def handle():
         esc.speed(0)
         servo.steer(0)
+
+    @socketio.on('location')
+    def handle(l):
+        tripple = gps_data()
+        emit('location', tripple)
+
 
 def register_sockets_test(socketio):
     """

@@ -18,11 +18,12 @@ var offlineLayer = L.tileLayer('/static/tiles/{z}/{x}/{y}.png', {
 
 var marker = L.marker([50.0996211, 14.581498], {icon: boatIcon}).addTo(map);
 
-var btn = $('#btn')[0];
-btn.onclick = function() {
-    socket.emit('btn', 0);
-};
-
 socket.on("location", (satellites, lat, lng) => {
   marker.setLatLng(new L.LatLng(lat, lng));
+  console.log(satellites);
 });
+
+// ask for location every 2s
+var intervalId = setInterval(function() {
+   socket.emit('location', 0);
+}, 2000);
