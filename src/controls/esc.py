@@ -8,10 +8,6 @@ min_value = 1100
 pi = pigpio.pi()
 
 # calibrate
-pi.set_servo_pulsewidth(escPIN, max_value)
-time.sleep(1)
-pi.set_servo_pulsewidth(escPIN, min_value)
-time.sleep(1)
 pi.set_servo_pulsewidth(escPIN, (max_value - min_value)/2 + min_value)
 
 
