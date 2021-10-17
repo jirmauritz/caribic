@@ -67,3 +67,9 @@ stopBtn.onclick = function() {
     th.psp.y = 0;
     th.stage.update();
 };
+
+socket.on('disconnect', function() {
+        $('#tVal').text('Throttle: 0');
+        th.psp.y = 0;
+        th.stage.update();
+})
